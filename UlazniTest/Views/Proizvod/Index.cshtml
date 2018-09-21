@@ -10,9 +10,6 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-
     <style type="text/css">
         .error {
             color: red;
@@ -39,7 +36,10 @@
                                 <label class="custom-file-label"></label>
                             </div>
                             <div class="input-group-append">
-                                <input type="submit" class="btn btn-outline-primary" value="Upload" />
+                                <input type="submit" class="btn btn-outline-primary" value="Import" />
+                            </div>
+                            <div class="input-group-append">
+                                <input type="submit" id="Button1" class="btn btn-outline-primary" value="Export" />
                             </div>
                         </div>
                     </div>
@@ -49,10 +49,12 @@
         <table id="dataTable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Naziv</th>
+                    <th>Opis</th>
+                    <th>Kategorija</th>
+                    <th>Proizvodjac</th>
+                    <th>Dobavljac</th>
+                    <th>Cena</th>
                 </tr>
             </thead>
         </table>
@@ -62,9 +64,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<link href="~/Content/DataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
 
-    <script type="text/javascript">
-        $(document).ready(function () {
             $('form').validate({
                 rules: {
                     JSONFile: {
@@ -74,22 +80,32 @@
                 messages: {
                     JSONFile: "Upload Json File",
                 }
-            })
+            });
+
             $('#dataTable').DataTable({
                 "ajax": {
                     "url": "/Json/GetData",
                     "type": "GET",
                     "datatype": "json"
                 },
-                "columns": [
-                    { "data": "ID" },
+                "columns": [       
                     { "data": "Naziv" },
                     { "data": "Opis" },
-                    { "data": "Kategorija" }
-                        { "data": "Proizvodjac" },
+                    { "data": "Kategorija" },
+                    { "data": "Proizvodjac" },
                     { "data": "Dobavljac" },
-                    { "data": "Cena" },
+                    { "data": "Cena" }
                 ]
+            });
+        });
+
+        $("#Button1").click(function () {
+
+            var message = "Json file Generated! check this in your Export_Json folder";
+            var zahtev = $.get("/Json/JsonExport");
+
+            zahtev.done(function () {
+                alert(message);
             });
         });
     </script>

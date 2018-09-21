@@ -14,7 +14,7 @@ namespace UlazniTest.Controllers
         private Test_Baza_Context db = new Test_Baza_Context();
 
         [HttpGet]
-       public ActionResult Index(Product product)
+       public ActionResult JsonExport(Product product)
         {
             var proizvod = db.Products.ToList();
             // Pass the "personlist" object for conversion object to JSON string  
@@ -30,7 +30,7 @@ namespace UlazniTest.Controllers
         {
             using (Test_Baza_Context db = new Test_Baza_Context())
             {
-                List<Product> productList = db.Products.ToList<Product>();
+                List<Product> productList = db.Products.ToList();
                 return Json(new { data = productList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -46,8 +46,8 @@ namespace UlazniTest.Controllers
                 }
                 else
                 {
-                    jsonFile.SaveAs(Server.MapPath("~/FileUpload/" + Path.GetFileName(jsonFile.FileName)));
-                    StreamReader streamReader = new StreamReader(Server.MapPath("~/Import_Json/" + Path.GetFileName(jsonFile.FileName)));
+                    jsonFile.SaveAs(Server.MapPath("~/Import_Json/" + Path.GetFileName(jsonFile.FileName)));
+                    StreamReader streamReader = new StreamReader(Server.MapPath("~/Export_Json/" + Path.GetFileName(jsonFile.FileName)));
                     string data = streamReader.ReadToEnd();
                     List<Product> products = JsonConvert.DeserializeObject<List<Product>>(data);
 
@@ -68,7 +68,7 @@ namespace UlazniTest.Controllers
                     ViewBag.Success = "File uploaded Successfully..";
                 }
             }
-            return View("Index");
+            return RedirectToAction("Index", "Proizvod");
         }
     }
 }

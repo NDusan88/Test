@@ -13,6 +13,12 @@ namespace UlazniTest.Controllers
         private readonly Test_Baza_Context db = new Test_Baza_Context();
 
         [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
