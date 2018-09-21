@@ -1,0 +1,50 @@
+﻿@model UlazniTest.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<form action="/Product/Create/" method="post">
+    @Html.AntiForgeryToken()
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Naziv">Naziv</label>
+            <input id="Naziv" name="Naziv" type="text" class="form-control" required />
+            <br />
+            <label for="Opis">Opis</label>
+            <textarea id="Opis" name="Opis" type="text" rows="4" cols="50" required></textarea>
+            <br />
+            <label for="Kategorija">Izaberi Kategoriju</label>
+            <select name="Kategorija" id="Kategorija" class="form-control">
+                <option value="PC">PC</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Monitors">Monitors</option>
+                <option value="Gaming equipment">Gaming equipment</option>
+            </select>
+        </div>
+        <br />
+        <label for="Proizvodjac">Proizvodjac</label>
+        <input id="Proizvodjac" name="Proizvodjac" type="text" class="form-control" required />
+        <br />
+        <label for="Dobavljac">Dobavljac</label>
+        <input id="Dobavljac" name="Dobavljac" type="text" class="form-control" required />
+        <br />
+        <label for="Cena">Cena</label>
+        <input id="Cena" name="Cena" type="number" placeholder="0.1" step="0.1" class="form-control" required />
+        <br />
+        <input id="Button1" type="submit" value="Sacuvaj proizvod" class="form-control" />
+    </div>
+
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
