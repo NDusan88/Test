@@ -194,3 +194,4 @@ C:\Users\ndusa\Desktop\Test\UlazniTest\obj\Debug\UlazniTest.csproj.CoreCompileIn
 C:\Users\ndusa\Desktop\Test\UlazniTest\obj\Debug\UlazniTest.csproj.CopyComplete
 C:\Users\ndusa\Desktop\Test\UlazniTest\obj\Debug\UlazniTest.dll
 C:\Users\ndusa\Desktop\Test\UlazniTest\obj\Debug\UlazniTest.pdb
+C:\Users\ndusa\Desktop\Test\UlazniTest\obj\Debug\UlazniTest.csprojAssemblyReference.cache

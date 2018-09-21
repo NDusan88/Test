@@ -21,6 +21,7 @@ namespace UlazniTest.Controllers
             string jsondata = JsonConvert.SerializeObject(proizvod);
             string path = Server.MapPath("~/Export_Json/");
             // Write that JSON to txt file,  
+               
             System.IO.File.WriteAllText(path + "output.json", jsondata);
             TempData["msg"] = "Json file Generated! check this in your Export_Json folder";
             return RedirectToAction("Index", "Proizvod"); ;

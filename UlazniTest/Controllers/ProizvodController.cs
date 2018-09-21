@@ -19,6 +19,12 @@ namespace UlazniTest.Controllers
         }
 
         [HttpGet]
+        public ActionResult List()
+        {
+            return View(db.Products.ToList());
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();

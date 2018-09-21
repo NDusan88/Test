@@ -499,6 +499,7 @@
     <Content Include="Views\Proizvod\Index.cshtml" />
     <Content Include="Views\Proizvod\Edit.cshtml" />
     <Content Include="Views\Proizvod\Delete.cshtml" />
+    <Content Include="Views\Proizvod\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Export_Json\" />
