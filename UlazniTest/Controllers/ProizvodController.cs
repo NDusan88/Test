@@ -48,7 +48,7 @@ namespace UlazniTest.Controllers
                 }
             }
 
-            return View();
+            return View("Index");
         }
 
 
@@ -86,7 +86,7 @@ namespace UlazniTest.Controllers
                 }
             }
 
-            return View();
+            return View("Index");
         }
 
 
