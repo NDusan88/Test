@@ -1,63 +1,97 @@
-﻿@model IEnumerable<UlazniTest.Models.Product>
+﻿@model UlazniTest.Models.Product
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<br />
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Naziv)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Opis)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kategorija)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proizvodjac)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dobavljac)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cena)
-        </th>
-        <th></th>
-    </tr>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Opis)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kategorija)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proizvodjac)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dobavljac)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cena)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+    <style type="text/css">
+        .error {
+            color: red;
+            display: inline-block;
+            margin-bottom: -57px !important;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container py-5">
+        @using (Html.BeginForm("Upload", "Json", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-sm-1 col-md-6 col-xs-12">
+                    <h5 class="text-danger">@ViewBag.Error</h5>
+                    <h5 class="text-success">@ViewBag.Success</h5>
+                    <div class="form-group">
+                        <label>Choose JSON File:</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input id="JSONfile" name="JSONFile" type="file" class="custom-file-input" />
+                                <label class="custom-file-label"></label>
+                            </div>
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-outline-primary" value="Upload" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').validate({
+                rules: {
+                    JSONFile: {
+                        required: true
+                    }
+                },
+                messages: {
+                    JSONFile: "Upload Json File",
+                }
+            })
+            $('#dataTable').DataTable({
+                "ajax": {
+                    "url": "/Json/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "ID" },
+                    { "data": "Naziv" },
+                    { "data": "Opis" },
+                    { "data": "Kategorija" }
+                        { "data": "Proizvodjac" },
+                    { "data": "Dobavljac" },
+                    { "data": "Cena" },
+                ]
+            });
+        });
+    </script>
 }
 
-</table>

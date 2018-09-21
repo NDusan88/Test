@@ -156,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IJson.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Db_Context\Test_Baza_Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -241,9 +242,12 @@
     <Content Include="Views\Proizvod\Create.cshtml" />
     <Content Include="Views\Proizvod\Index.cshtml" />
     <Content Include="Views\Proizvod\Edit.cshtml" />
-    <Content Include="Views\Proizvod\DeleteConfirmed.cshtml" />
+    <Content Include="Views\Proizvod\Delete.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Export_Json\" />
+    <Folder Include="Import_Json\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

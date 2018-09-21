@@ -13,13 +13,6 @@ namespace UlazniTest.Controllers
         private readonly Test_Baza_Context db = new Test_Baza_Context();
 
         [HttpGet]
-        public ActionResult Index()
-        {
-            return View(db.Products.ToList());
-        }
-
-
-        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -85,6 +78,7 @@ namespace UlazniTest.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
