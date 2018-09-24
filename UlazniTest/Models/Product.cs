@@ -10,23 +10,23 @@ namespace UlazniTest.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Polje je ibavezno")]
         [StringLength(50)]
         public string Naziv { get; set; }
 
-        [StringLength(250)]
+        [StringLength(250, ErrorMessage = "Prekoracili ste maksimakni broj od 250 karaktera")]
         public string Opis { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "Prekoracili ste maksimakni broj od 50 karaktera")]
         public string Kategorija { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "Polje je obavezno")]
+        [StringLength(50, ErrorMessage = "Prekoracili ste maksimakni broj od 50 karaktera")]
         public string Proizvodjac { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "Polje je obvavezno")]
+        [StringLength(50, ErrorMessage = "Prekoracili ste maksimakni broj od 50 karaktera")]
         public string Dobavljac { get; set; }
 
         [Column(TypeName = "money")]

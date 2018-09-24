@@ -18,6 +18,8 @@ namespace UlazniTest.Controllers
             return View();
         }
 
+
+        //Retun a list of product's
         [HttpGet]
         public ActionResult List()
         {
@@ -30,7 +32,7 @@ namespace UlazniTest.Controllers
             return View();
         }
 
-
+        //Create product's
         [HttpPost]
         public ActionResult Create(Product product)
         {
@@ -68,6 +70,8 @@ namespace UlazniTest.Controllers
 );
         }
 
+
+        //Edit Product's
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product product)
@@ -90,6 +94,8 @@ namespace UlazniTest.Controllers
         }
 
 
+
+        //Delete Product's
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -106,6 +112,8 @@ namespace UlazniTest.Controllers
         }
 
 
+
+        //Confirm if you want to delete product
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

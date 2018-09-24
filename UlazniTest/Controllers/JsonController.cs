@@ -13,6 +13,8 @@ namespace UlazniTest.Controllers
     {
         private Test_Baza_Context db = new Test_Baza_Context();
 
+
+        //Export Json file to root
         [HttpGet]
        public ActionResult JsonExport(Product product)
         {
@@ -27,6 +29,9 @@ namespace UlazniTest.Controllers
             return RedirectToAction("Index", "Proizvod"); ;
         }
 
+
+        //Get Data to index
+        [HttpGet]
         public ActionResult GetData()
         {
             using (Test_Baza_Context db = new Test_Baza_Context())
@@ -36,6 +41,8 @@ namespace UlazniTest.Controllers
             }
         }
 
+
+        //Uload file json to database and save it
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase jsonFile)
         {
